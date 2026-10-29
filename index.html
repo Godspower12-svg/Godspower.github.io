@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     WELCOME! HOW TO USE THIS FILE
+     ------------------------------------------------------------
+     1. Look for comments that say  >>> EDIT THIS <<<
+        Those mark every spot you should change.
+     2. Everything else can stay exactly as it is.
+     3. Put your own pictures in the "images" folder, next to this
+        file, then point to them (see the photo + project steps).
+     4. Save the file, then double-click index.html to preview it
+        in your browser.
+
+     TIP: Use your editor's Find (Ctrl+F / Cmd+F) and search for
+     "[" to jump to every placeholder like [Your Full Name].
+     ============================================================ -->
+
+<!-- >>> EDIT THIS <<<  The text shown on the browser tab -->
+<title>[Your Full Name] | Portfolio</title>
+<meta name="description" content="Personal data analyst portfolio">
+
+<!-- Fonts and icons (loaded from the internet, no changes needed) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ============================================================
+   STYLES
+   Most people never need to touch this part.
+   OPTIONAL: to change the accent colour across the whole site,
+   change the --accent value below (currently #5e81ac).
+   ============================================================ */
+:root{
+  --accent:#5e81ac;
+  --accent-dark:#4c6a8f;
+  --text:#3d4449;
+  --muted:#7f888f;
+  --line:#e3e7ea;
+  --soft:#f5f7f9;
+  --sidebar:17rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',sans-serif;font-size:1.05rem;line-height:1.7;color:var(--text);background:#fff}
+h1,h2,h3{font-family:'Source Serif 4',serif;color:#2e3440;line-height:1.25}
+a{color:var(--accent);text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* Fixed left sidebar */
+#sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);background:var(--soft);border-right:1px solid var(--line);
+  padding:2.5rem 1.8rem;display:flex;flex-direction:column;z-index:10}
+#sidebar h1{font-size:1.6rem;margin-bottom:.3rem}
+#sidebar .title{color:var(--muted);font-size:.98rem;line-height:1.5;margin-bottom:2.2rem}
+#sidebar nav a{display:block;padding:.6rem 0;color:var(--text);font-weight:600;border-bottom:1px solid var(--line)}
+#sidebar nav a:hover{color:var(--accent)}
+.socials{margin-top:auto;display:flex;gap:.5rem}
+.socials a,.topbar .socials a{width:2.3rem;height:2.3rem;border-radius:50%;display:grid;place-items:center;
+  color:#fff;background:var(--accent);transition:background .2s}
+.socials a:hover{background:var(--accent-dark)}
+
+/* Main area */
+#main{margin-left:var(--sidebar)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;border-bottom:1px solid var(--line)}
+.logo{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.3rem;color:#2e3440}
+.topbar .socials a{background:none;color:var(--muted);width:2rem}
+.topbar .socials a:hover{color:var(--accent);background:none}
+section{padding:3.5rem 3rem;border-bottom:1px solid var(--line)}
+section h2{font-size:1.9rem;margin-bottom:1.5rem}
+
+/* Banner */
+#about{display:flex;align-items:center;justify-content:space-between;gap:3rem}
+#about .bio{max-width:34rem}
+#about h2{font-size:2.8rem;margin-bottom:1rem}
+#about p{font-family:'Source Serif 4',serif;font-size:1.12rem;line-height:1.8;margin-bottom:1.5rem}
+.photo{flex:none;width:17rem;height:17rem;border-radius:50%;overflow:hidden;background:var(--soft);
+  border:6px solid #fff;box-shadow:0 0 0 2px var(--accent);display:grid;place-items:center;color:var(--accent);font-size:5rem}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.btn{display:inline-block;padding:.65rem 1.6rem;border-radius:3px;background:var(--accent);color:#fff;font-weight:600;transition:background .2s}
+.btn:hover{background:var(--accent-dark)}
+
+/* Project cards: 3 columns on desktop, 2 on tablet, 1 on phone */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.card{border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;background:#fff}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:var(--soft)}
+.card .body{padding:1.2rem 1.3rem 1.4rem;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:1.2rem;margin-bottom:.5rem}
+.card p{font-size:.98rem;color:var(--muted);margin-bottom:1.2rem;flex:1}
+.card .btn{align-self:flex-start;font-size:.95rem;padding:.5rem 1.2rem}
+
+/* Contact */
+.contact-list{list-style:none;display:grid;gap:1rem}
+.contact-list li{display:flex;gap:1rem;align-items:center}
+.contact-list i{width:2.6rem;height:2.6rem;border-radius:50%;background:var(--soft);color:var(--accent);display:grid;place-items:center}
+.contact-list span{display:block;font-size:.85rem;color:var(--muted);line-height:1.2}
+
+footer{padding:2rem 3rem;color:var(--muted);font-size:.92rem}
+
+/* Tablet + phone */
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:860px){
+  #sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line);padding:1.5rem}
+  #sidebar nav{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1rem}
+  #sidebar nav a{border:0;padding:.2rem 0}
+  #sidebar .title{margin-bottom:1rem}
+  #main{margin-left:0}
+  .topbar,section,footer{padding-left:1.5rem;padding-right:1.5rem}
+  #about{flex-direction:column-reverse;text-align:left;align-items:flex-start}
+  #about h2{font-size:2.2rem}
+}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.photo{width:13rem;height:13rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     LEFT SIDEBAR (stays fixed while you scroll)
+     ============================================================ -->
+<aside id="sidebar">
+
+  <!-- >>> EDIT THIS <<<  Your full name -->
+  <h1>[Your Full Name]</h1>
+
+  <!-- >>> EDIT THIS <<<  Your job title, e.g. "Data Analyst skilled in Excel, SQL and Power BI" -->
+  <p class="title">[Your Professional Title e.g. Data Analyst skilled in Excel, SQL and Power BI]</p>
+
+  <!-- Menu links. Each one jumps to the section with the matching id.
+       Only change the words if you rename a section. -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- >>> EDIT THIS <<<  SOCIAL ICONS (sidebar)
+       Replace the "#" in each href with your real link.
+       - LinkedIn: paste your profile URL
+       - GitHub:   https://github.com/your-username
+       - Email:    keep "mailto:" and put your address after it
+       To remove an icon, delete its whole <a> line.
+       There is a second set of icons in the top bar below. Update both. -->
+  <div class="socials">
+    <a href="[Paste your LinkedIn profile URL here]" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://github.com/" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+    <a href="mailto:[your email address]" aria-label="Email"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
+
+<div id="main">
+
+  <!-- ============================================================
+       TOP HEADER BAR
+       ============================================================ -->
+  <header class="topbar">
+    <!-- The word "Portfolio" at the top left. Change it if you like. -->
+    <span class="logo">Portfolio</span>
+
+    <!-- >>> EDIT THIS <<<  SOCIAL ICONS (top bar). Same links as the sidebar. -->
+    <div class="socials">
+      <a href="[Paste your LinkedIn profile URL here]" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="mailto:[your email address]" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       ABOUT / BANNER
+       Bio on the left, round photo on the right.
+       ============================================================ -->
+  <section id="about">
+    <div class="bio">
+      <!-- >>> EDIT THIS <<<  Your headline (usually "Hi, I'm" plus your name) -->
+      <h2>Hi, I'm [Your Full Name]</h2>
+
+      <!-- >>> EDIT THIS <<<  YOUR BIO
+           Replace the text below with 3 to 4 sentences covering:
+           your background, the tools you use, and what you are open
+           to (roles, freelance or consulting work). -->
+      <p>[Write 3–4 sentences about your background, the tools you use, and what you are open to — roles, freelance or consulting work]</p>
+
+      <a class="btn" href="#projects">See my work</a>
+    </div>
+
+    <!-- >>> EDIT THIS <<<  YOUR PROFILE PHOTO
+         Step 1: Copy your photo into the "images" folder (a square
+                 picture works best), e.g. images/profile.jpg
+         Step 2: Delete the <i ...></i> placeholder line below.
+         Step 3: Remove the "<!--" and "-->" around the <img> line
+                 so it becomes active, and make sure the file name
+                 in src="" matches your photo's name exactly. -->
+    <div class="photo">
+      <i class="fas fa-user" aria-hidden="true"></i>
+      <!-- <img src="images/profile.jpg" alt="Photo of [Your Full Name]"> -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS
+       ============================================================ -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <!-- HOW TO ADD MORE PROJECTS
+         1. Find the block that starts with  <article class="card">
+            and ends with  </article>  (the demo card below).
+         2. Select that whole block and copy it.
+         3. Paste it directly underneath the original, still inside
+            the <div class="grid"> ... </div> wrapper.
+         4. Edit the image, title, description and link in the copy.
+         5. Repeat as often as you like. The grid arranges the cards
+            into neat rows of three on its own (two on tablets, one
+            on phones). -->
+    <div class="grid">
+
+      <!-- ===== PROJECT CARD START (copy from here...) ===== -->
+      <article class="card">
+
+        <!-- >>> EDIT THIS <<<  PROJECT IMAGE
+             Put a screenshot (e.g. of your dashboard) in the "images"
+             folder, then change the src below to its name, e.g.
+             src="images/sales-dashboard.png"
+             Until then, the placeholder picture is shown.
+             Keep the alt text short: it describes the image for
+             screen readers. -->
+        <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%23e8edf3'/%3E%3Crect x='110' y='210' width='60' height='110' fill='%235e81ac' opacity='.5'/%3E%3Crect x='200' y='160' width='60' height='160' fill='%235e81ac' opacity='.7'/%3E%3Crect x='290' y='110' width='60' height='210' fill='%235e81ac'/%3E%3Crect x='380' y='180' width='60' height='140' fill='%235e81ac' opacity='.7'/%3E%3Crect x='470' y='140' width='60' height='180' fill='%235e81ac' opacity='.5'/%3E%3C/svg%3E"
+             alt="Placeholder image for a project">
+
+        <div class="body">
+          <!-- >>> EDIT THIS <<<  PROJECT TITLE -->
+          <h3>Demo Project: Sales Dashboard</h3>
+
+          <!-- >>> EDIT THIS <<<  PROJECT DESCRIPTION
+               One or two sentences: what problem you solved, which
+               tools you used, and what the result was. -->
+          <p>A short description of your project goes here. Mention the problem you solved, the tools you used (Excel, SQL, Power BI) and the result.</p>
+
+          <!-- >>> EDIT THIS <<<  PROJECT LINK
+               Replace "#" with the web address of your project
+               (a GitHub repo, a Power BI report, a Tableau page...).
+               Keep the quote marks. Example:
+               href="https://github.com/yourname/sales-dashboard" -->
+          <a class="btn" href="#">View Project</a>
+        </div>
+      </article>
+      <!-- ===== PROJECT CARD END (...to here) ===== -->
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <ul class="contact-list">
+
+      <!-- >>> EDIT THIS <<<  EMAIL: change it in BOTH places on this line -->
+      <li><i class="fas fa-envelope"></i>
+        <div><span>Email</span><a href="mailto:[your email address]">[your email address]</a></div></li>
+
+      <!-- >>> EDIT THIS <<<  LINKEDIN: paste your profile URL in the href.
+           The visible text can stay as "View my LinkedIn profile". -->
+      <li><i class="fab fa-linkedin-in"></i>
+        <div><span>LinkedIn</span><a href="[Paste your LinkedIn profile URL here]" target="_blank" rel="noopener">View my LinkedIn profile</a></div></li>
+
+      <!-- >>> EDIT THIS <<<  LOCATION: your city and country -->
+      <li><i class="fas fa-location-dot"></i>
+        <div><span>Location</span>[Your City, Country]</div></li>
+    </ul>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <!-- >>> EDIT THIS <<<  Replace the name. The year updates itself. -->
+    &copy; <span id="year"></span> [Your Full Name]. All rights reserved.
+  </footer>
+</div>
+
+<script>
+  /* Writes the current year into the footer automatically.
+     You never need to edit this. */
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
